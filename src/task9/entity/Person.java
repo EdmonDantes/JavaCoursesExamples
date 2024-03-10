@@ -13,15 +13,18 @@ public class Person {
 
     private String name;
 
+    private int age;
+
     public Person(int id) {
         this.id = id;
     }
 
     public static void saveTo(File file, Person person) throws IOException {
         try (FileOutputStream outputStream = new FileOutputStream(file)) {
-            try (PrintWriter writer = new PrintWriter(file)) {
+            try (PrintWriter writer = new PrintWriter(outputStream)) {
                 writer.println(person.id);
                 writer.println(person.name);
+                writer.println(person.age);
             }
         }
     }
@@ -31,6 +34,7 @@ public class Person {
             try (Scanner scanner = new Scanner(inputStream)) {
                 Person result = new Person(Integer.parseInt(scanner.nextLine()));
                 result.name = scanner.nextLine();
+                result.age = Integer.parseInt(scanner.nextLine());
                 return result;
             }
         }
@@ -46,5 +50,13 @@ public class Person {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 }
