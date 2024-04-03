@@ -20,7 +20,7 @@ public class Person {
     // 1
     public static void saveTo(File file, Person person) throws IOException {
         try (FileOutputStream outputStream = new FileOutputStream(file)) {
-            try (PrintWriter writer = new PrintWriter(file)) {
+            try (PrintWriter writer = new PrintWriter(outputStream)) {
                 writer.println(person.id);
                 writer.println(person.name);
             }
